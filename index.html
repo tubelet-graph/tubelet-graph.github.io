@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Tracking and Understanding Object Transformations">
+  <meta property="og:title" content="Tracking and Understanding Object Transformations">
+  <meta property="og:description" content="Tracking and Understanding Object Transformations">
+  <meta property="twitter:title" content="Tracking and Understanding Object Transformations">
+  <meta property="twitter:description" content="Tracking and Understanding Object Transformations">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tracking and Understanding Object Transformations</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://yihongsun.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://dynamo-depth.github.io">
+            Dynamo-Depth
+          </a>
+          <a class="navbar-item" href="https://mod-uv.github.io">
+            MOD-UV
+          </a>
+          <a class="navbar-item" href="https://tubelet-graph.github.io">
+            TubeletGraph
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- Navigation Bar -->
+
+<!-- Title/Authors/Institutions/Links -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <!-- Title -->
+          <h1 class="title is-1 publication-title">Tracking and Understanding Object Transformations</h1>
+          <h2 class="title is-size-3">NeurIPS 2025</h2>
+          <!-- Title -->
+          
+          <!-- Authors -->
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">
+              <a href="https://yihongsun.github.io">Yihong Sun</a>,</span>
+            <span class="author-block">
+              <a href="https://youngxinyu1802.github.io/">Xinyu Yang</a>,</span>
+            <span class="author-block">
+              <a href="https://jenjsun.com/">Jennifer J. Sun</a>,</span>
+            <span class="author-block">
+              <a href="https://www.cs.cornell.edu/~bharathh/">Bharath Hariharan</a></span>
+          </div>
+          <!-- Authors -->
+
+          <!-- Institutions -->
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">Cornell University</span>
+          </div>
+          <!-- Institutions -->
+
+          <!-- PDF Links -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://tubelet-graph.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper (Coming Soon)</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://tubelet-graph.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv (Coming Soon)</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://tubelet-graph.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video (Coming Soon)</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://tubelet-graph.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser -->
+<section class="hero teaser">
+  <div class="container is-four-fifths">
+    <div class="columns is-centered" style="margin-top: 20pt; margin-bottom: -5pt;">
+      <div class="column video-teaser" style="text-align: center">
+        <video controls muted loop playsinline width="100%"> <source src="static/results/m3vos/0334_cut_fruit_1.mp4" type="video/mp4"></video>
+        <img src="static/results/m3vos/0334_cut_fruit_1.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+    <div class="subtitle has-text-justified">
+      <p>
+        <strong>Track Any State:</strong> Given a video and an object mask as prompt (shown in cyan contour) in the first frame, we produce consisten object tracks (top-right), while building a state graph for each detected transformation and its resulting effect. 
+        <br></br>
+      </p>
+    </div>
+  </div>
+</section>
+<!-- Teaser -->
+
+<!-- Main Body -->
+<section class="section">
+  <div class="container">
+    <!-- Abstract -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Real-world objects frequently undergo state transformations. 
+            From an apple being cut into pieces to a butterfly emerging from its cocoon, tracking through these changes is important for understanding real-world objects and dynamics. 
+            However, existing methods often lose track of the target object after transformation, due to significant changes to object appearance. 
+          </p>
+          <p>
+            To address this limitation, we introduce TubeletGraph, a zero-shot system that recovers missing objects after transformation and maps out how the object states are evolving over time. 
+            TubeletGraph first identifies potentially overlooked tracks, and determines whether they should be integrated based on semantic and proximity priors. 
+            Then, it reasons about the added tracks and generates a state graph describing each observed transformation. 
+            TubeletGraph achieves state-of-the-art tracking performance under transformations, while demonstrating deeper understandings of object transformations and promising capabilities in temporal grounding and semantic reasoning for complex object transformations.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract -->
+
+    &nbsp;
+
+    <!-- Methodology -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Methodology</h2>
+
+        <div class="columns is-centered">
+          <div class="column video-full" style="text-align: center">
+            <video controls muted loop playsinline width="100%"> <source src="static/results/vost/555_tear_aluminium_foil.mp4" type="video/mp4"></video>
+            <img src="static/results/vost/555_tear_aluminium_foil.jpg" style="max-height: 180px; width: auto">
+          </div>
+        </div>
+
+        <div class="subtitle has-text-justified">
+          <p>
+            <strong>Overview of TubeletGraph:</strong> 
+            (1) We first partition the input video into a set of tubelets (<em>"Init. & Later Tubelets", Middle</em>). 
+            (2) We then use spatial and semantic proximity to the prompt object to decide which tracks to include in the final prediction (<em>"Predicted Object Tracks", Top-right</em>). 
+            (3) Finally, for each added track, we prompt a vision-language model to build a state graph for each detected transformation and its resulting effect (<em>"Predicted State Graph", Bottom</em>).
+            <br></br>
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Methodology -->
+    
+  </div>
+</section>
+<!-- Main Body -->
+
+
+<!-- Scripts for Generating Captions -->
+<script>
+  function createLabelTable(labels, widths) {
+    const table = document.createElement('table');
+    table.style = "border-collapse: collapse; width:100%; margin-top:0pt;margin-bottom:3pt; padding: 0; border: 0;";
+
+    const tr = document.createElement('tr');
+    tr.style = "margin: 0; border: 0";
+
+    labels.forEach((label, index) => {
+      const td = document.createElement('td');
+      td.style = `width:${widths[index]}; padding: 0; margin: 0; border: 0; text-align: middle;`;
+
+      const h2 = document.createElement('h2');
+      h2.className = "has-text-centered subtitle is-5";
+      h2.textContent = label;
+
+      td.appendChild(h2);
+      tr.appendChild(td);
+    });
+
+    table.appendChild(tr);
+    return table;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.video-full').forEach(column => {
+      const labelTable1 = createLabelTable(['Input: Video + Object Prompt', 'Predicted Object Tracks'], ['50%', '50%']);
+      const labelTable2 = createLabelTable(['Initial Tubelets', 'Later Tubelets'], ['50%', '50%']);
+      const labelTable3 = createLabelTable(['Predicted State Graph'], ['100%']);
+      column.insertBefore(labelTable1, column.children[0]);
+      column.insertBefore(labelTable2, column.children[2]);
+      column.append(labelTable3);
+    });
+
+    document.querySelectorAll('.video-teaser').forEach(column => {
+      const labelTable1 = createLabelTable(['Input: Video + Object Prompt', 'Predicted Object Tracks'], ['50%', '50%']);
+      const labelTable2 = createLabelTable(['Predicted State Graph'], ['100%']);
+      column.insertBefore(labelTable1, column.children[0]);
+      column.insertBefore(labelTable2, column.children[2]);
+    });
+
+    document.querySelectorAll('.video-ours').forEach(column => {
+      const labelTable1 = createLabelTable(['Input: Video + Object Prompt', 'Predicted Object Tracks'], ['50%', '50%']);
+      const labelTable2 = createLabelTable(['Predicted State Graph'], ['100%']);
+      column.insertBefore(labelTable1, column.children[1]);
+      column.insertBefore(labelTable2, column.children[3]);
+    });
+
+    document.querySelectorAll('.video-comp').forEach(column => {
+      const labelTable = createLabelTable(['SAM2.1 (ft)', 'SAM2.1', 'SAMURAI', 'Ours', 'Ground Truth'], ['20%', '20%', '20%', '20%', '20%']);
+      column.insertBefore(labelTable, column.children[0]);
+    });
+  }
+);
+</script>
+<!-- Scripts for Generating Captions -->
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container">
+    <!-- Abstract -->
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">BibTeX</h2>
+        <pre><code>Coming Soon!</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- BibTeX -->
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/tubelet-graph/tubelet-graph.github.io" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            This website is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer -->
+
+
+</body>
+</html>
+
