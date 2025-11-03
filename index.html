@@ -5,11 +5,14 @@
   <meta name="description" content="Tracking and Understanding Object Transformations">
   <meta property="og:title" content="Tracking and Understanding Object Transformations">
   <meta property="og:description" content="Tracking and Understanding Object Transformations">
+  <meta property="og:image" content="https://tubelet-graph.github.io/static/figures/teaser.jpg">
   <meta property="twitter:title" content="Tracking and Understanding Object Transformations">
   <meta property="twitter:description" content="Tracking and Understanding Object Transformations">
+  <meta property="twitter:image" content="https://tubelet-graph.github.io/static/figures/teaser.jpg">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="object tracking, transformations, state change detection, spatiotemporal reasoning, zero-shot">
   <title>Tracking and Understanding Object Transformations</title>
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -101,12 +104,12 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://tubelet-graph.github.io"
+                <a href="https://openreview.net/pdf?id=fz1mm2EsQ9"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
-                  <span>Paper (Coming Soon)</span>
+                  <span>Paper</span>
                 </a>
               </span>
               <span class="link-block">
@@ -148,15 +151,14 @@
 <!-- Teaser -->
 <section class="hero teaser">
   <div class="container is-four-fifths">
-    <div class="columns is-centered" style="margin-top: 20pt; margin-bottom: -5pt;">
-      <div class="column video-teaser" style="text-align: center">
-        <video controls muted loop playsinline width="100%"> <source src="static/results/m3vos/0334_cut_fruit_1.mp4" type="video/mp4"></video>
-        <img src="static/results/m3vos/0334_cut_fruit_1.jpg" style="max-height: 180px; width: auto">
+    <div class="columns is-centered" style="margin-top: 0pt; margin-bottom: 0pt;">
+      <div class="column teaser" style="text-align: center">
+        <img class="teaser" src="./static/figures/teaser.jpg" style="width: 100%; height: auto;">
       </div>
     </div>
     <div class="subtitle has-text-justified">
       <p>
-        <strong>Track Any State:</strong> Given a video and an object mask as prompt (shown in cyan contour) in the first frame, we produce consisten object tracks (top-right), while building a state graph for each detected transformation and its resulting effect. 
+        <strong>Track Any State:</strong> Given a video and an initial object mask as prompt (top-left), we produce consistent object tracks (top-right), while building a state graph (bottom) for each detected transformation and its resulting effect. 
         <br></br>
       </p>
     </div>
@@ -175,18 +177,49 @@
           <p>
             Real-world objects frequently undergo state transformations. 
             From an apple being cut into pieces to a butterfly emerging from its cocoon, tracking through these changes is important for understanding real-world objects and dynamics. 
-            However, existing methods often lose track of the target object after transformation, due to significant changes to object appearance. 
+            However, existing methods often lose track of the target object after transformation, due to significant changes in object appearance. 
+            To address this limitation, we introduce the task of <strong>Track Any State</strong>: tracking objects through transformations while detecting and describing state changes, accompanied by a new benchmark dataset, VOST-TAS. 
           </p>
           <p>
-            To address this limitation, we introduce TubeletGraph, a zero-shot system that recovers missing objects after transformation and maps out how the object states are evolving over time. 
+            To tackle this problem, we present <strong>TubeletGraph</strong>, a zero-shot system that recovers missing objects after transformation and maps out how object states are evolving over time. 
             TubeletGraph first identifies potentially overlooked tracks, and determines whether they should be integrated based on semantic and proximity priors. 
             Then, it reasons about the added tracks and generates a state graph describing each observed transformation. 
-            TubeletGraph achieves state-of-the-art tracking performance under transformations, while demonstrating deeper understandings of object transformations and promising capabilities in temporal grounding and semantic reasoning for complex object transformations.
+            TubeletGraph achieves state-of-the-art tracking performance under transformations, while demonstrating deeper understanding of object transformations and promising capabilities in temporal grounding and semantic reasoning for complex object transformations.
           </p>
         </div>
       </div>
     </div>
     <!--/ Abstract -->
+
+    &nbsp;
+
+    <!-- Motivation -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Motivation</h2>
+
+        <div class="columns is-centered">
+          <div class="column motivation" style="text-align: center">
+            <img class="motivation" src="./static/figures/motivation.jpg" style="width: 100%; height: auto;">
+          </div>
+        </div>
+
+        <div class="subtitle has-text-justified">
+          <p>
+            <strong>Problem:</strong> 
+            Existing object trackers often fail to keep track of the complete object when transformations occur (left).
+            On the other hand, current VLM systems can provide descriptions of state changes, but they can't ground them spatiotemporally to the target objects in the video (right).
+            <br></br>
+          </p>
+          <p>
+            <strong>Solution:</strong> 
+            We propose TubeletGraph, a zero-shot system that can map out how the object evolves over time, detect the underlying state changes, and track the resulting objects of these changes.
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Motivation -->
 
     &nbsp;
 
@@ -196,18 +229,17 @@
         <h2 class="title is-3">Methodology</h2>
 
         <div class="columns is-centered">
-          <div class="column video-full" style="text-align: center">
-            <video controls muted loop playsinline width="100%"> <source src="static/results/vost/555_tear_aluminium_foil.mp4" type="video/mp4"></video>
-            <img src="static/results/vost/555_tear_aluminium_foil.jpg" style="max-height: 180px; width: auto">
+          <div class="column method" style="text-align: center">
+            <img class="method" src="./static/figures/pipeline.jpg" style="width: 100%; height: auto;">
           </div>
         </div>
 
         <div class="subtitle has-text-justified">
           <p>
             <strong>Overview of TubeletGraph:</strong> 
-            (1) We first partition the input video into a set of tubelets (<em>"Init. & Later Tubelets", Middle</em>). 
-            (2) We then use spatial and semantic proximity to the prompt object to decide which tracks to include in the final prediction (<em>"Predicted Object Tracks", Top-right</em>). 
-            (3) Finally, for each added track, we prompt a vision-language model to build a state graph for each detected transformation and its resulting effect (<em>"Predicted State Graph", Bottom</em>).
+            (1) We first partition the input video into a set of “tubelets” by tracking all regions from the start and initiating new tracks when untracked pixels emerge; 
+            (2) We then use semantic and spatial proximity priors to filter which candidates to include in the final prediction; 
+            (3) Finally, for each added object, we query a vision-language model to build a state graph for each detected transformation and its resulting effect.
             <br></br>
           </p>
         </div>
@@ -215,11 +247,251 @@
       </div>
     </div>
     <!--/ Methodology -->
-    
+
+    &nbsp;
+
+    <!-- VOST-TAS -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">VOST-TAS</h2>
+
+        <div class="columns is-centered">
+          <div class="column method" style="text-align: center">
+            <img class="method" src="./static/figures/VOST-TAS.jpg" style="width: 100%; height: auto;">
+          </div>
+        </div>
+
+        <div class="subtitle has-text-justified">
+          <p>
+            <strong>Overview of VOST-TAS:</strong> 
+            We introduce VOST-TAS (TrackAnyState), an extended version of the <a href="https://www.vostdataset.org/">VOST</a> validation set with explicit transformation annotations for tracking and understanding object state changes in videos.
+            Specifically, the dataset contains 57 video instances, 108 transformations, and 293 annotated resulting objects.
+            Qualitative examples are provided above and the full dataset is available <a href="https://github.com/YihongSun/TubeletGraph/tree/main/VOST-TAS">HERE</a>.
+            <br></br>
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <!--/ VOST-TAS -->
   </div>
 </section>
 <!-- Main Body -->
 
+<!-- Qualitative Results -->
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Qualitative Results</h2>
+      </div>
+    </div>
+
+    <div class="subtitle has-text-justified">
+      <p>
+        We first showcase TubeletGraph's predictions on <a href="https://zixuan-chen.github.io/M-cube-VOS.github.io/">M\(^3\)-VOS</a> and <a href="https://www.vostdataset.org/">VOST</a>.
+        For each instance, we show the input video with initial object prompt in cyan (<em>top-left</em>), the predicted object tracks (<em>top-right</em>), and the predicted state graph (<em>bottom</em>).
+        <br></br>
+      </p>
+    </div>
+
+    <div class="columns is-centered has-text-centered" style="margin-top:10pt; margin-bottom:-17pt">
+      <h2 class="title is-4">M\(^3\)-VOS<br></br></h2>
+    </div>
+
+    <div class="columns is-centered" style="margin-top: 10pt; margin-bottom: -5pt;">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 0334_cut_fruit_1</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/m3vos/0334_cut_fruit_1.mp4" type="video/mp4"></video>
+        <img src="static/results/m3vos/0334_cut_fruit_1.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+    <div class="columns is-centered" style="margin-top: 10pt; margin-bottom: -5pt;">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 0315_paint_cream_4</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/m3vos/0315_paint_cream_4.mp4" type="video/mp4"></video>
+        <img src="static/results/m3vos/0315_paint_cream_4.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+    <div class="columns is-centered" style="margin-top: 10pt; margin-bottom: -5pt;">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 0269_press_pencil_1</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/m3vos/0269_press_pencil_1.mp4" type="video/mp4"></video>
+        <img src="static/results/m3vos/0269_press_pencil_1.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+    <div class="columns is-centered" style="margin-top: 10pt; margin-bottom: -5pt;">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 0250_splash_liquid_2</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/m3vos/0250_splash_liquid_2.mp4" type="video/mp4"></video>
+        <img src="static/results/m3vos/0250_splash_liquid_2.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+    <div class="columns is-centered" style="margin-top: 10pt; margin-bottom: -5pt;">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 0369_cut_cheese_3</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/m3vos/0369_cut_cheese_3.mp4" type="video/mp4"></video>
+        <img src="static/results/m3vos/0369_cut_cheese_3.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+    <div class="columns is-centered" style="margin-top: 10pt; margin-bottom: -5pt;">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 0292_peel_fruit_3</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/m3vos/0292_peel_fruit_3.mp4" type="video/mp4"></video>
+        <img src="static/results/m3vos/0292_peel_fruit_3.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+
+
+    <div class="columns is-centered has-text-centered" style="margin-top:30pt; margin-bottom:-17pt">
+      <h2 class="title is-4">VOST<br></br></h2>
+    </div>
+    
+    <div class="columns is-centered" style="margin-top: 0pt; margin-bottom: -5pt;">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 555_tear_aluminium_foil</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/vost/555_tear_aluminium_foil.mp4" type="video/mp4"></video>
+        <img src="static/results/vost/555_tear_aluminium_foil.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+    <div class="columns is-centered" style="margin-top: 0pt; margin-bottom: -5pt;">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 4021_cut_broccoli</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/vost/4021_cut_broccoli.mp4" type="video/mp4"></video>
+        <img src="static/results/vost/4021_cut_broccoli.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+    <div class="columns is-centered" style="margin-top: 0pt; margin-bottom: -5pt;">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 9671_split_cups</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/vost/9671_split_cups.mp4" type="video/mp4"></video>
+        <img src="static/results/vost/9671_split_cups.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+    
+    <div class="columns is-centered" style="margin-top: 0pt; margin-bottom: -5pt;">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 3161_peel_banana</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/vost/3161_peel_banana.mp4" type="video/mp4"></video>
+        <img src="static/results/vost/3161_peel_banana.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+    <div class="columns is-centered" style="margin-top: 10pt; margin-bottom: -5pt;">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 3316_peel_onion</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/vost/3316_peel_onion.mp4" type="video/mp4"></video>
+        <img src="static/results/vost/3316_peel_onion.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+    <div class="columns is-centered" style="margin-top: 10pt; margin-bottom: -5pt;">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 556_cut_tomato</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/vost/556_cut_tomato_1.mp4" type="video/mp4"></video>
+        <img src="static/results/vost/556_cut_tomato_1.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- Qualitative Results -->
+
+
+<!-- Qualitative Comparisons -->
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Qualitative Comparisons</h2>
+      </div>
+    </div>
+
+    <div class="subtitle has-text-justified">
+      <p>
+        We now compare TubeletGraph against prior works on M\(^3\)-VOS and VOST.
+        For each input video, we show the predictions of SAM2.1 (finetuned on VOST train set), SAM2.1 (off-the-shelf), SAMURAI, TubeletGraph (with all resulting objects merged), and the ground truth annotations. 
+        <br></br>
+      </p>
+    </div>
+
+    <div class="columns is-centered has-text-centered" style="margin-top:30pt; margin-bottom:-17pt">
+      <h2 class="title is-4">M\(^3\)-VOS<br></br></h2>
+    </div>
+    <div class="columns is-centered">
+      <div class="column video-comp" style="text-align: center">
+        <video controls muted loop playsinline width="100%"> <source src="static/results/comp/0315_paint_cream_4.mp4" type="video/mp4"></video>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/comp/0269_press_pencil_1.mp4" type="video/mp4"></video>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/comp/0250_splash_liquid_2.mp4" type="video/mp4"></video>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/comp/0369_cut_cheese_3.mp4" type="video/mp4"></video>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/comp/0292_peel_fruit_3.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered" style="margin-top:30pt; margin-bottom:-17pt">
+      <h2 class="title is-4">VOST<br></br></h2>
+    </div>
+    <div class="columns is-centered">
+      <div class="column video-comp" style="text-align: center">
+        <video controls muted loop playsinline width="100%"> <source src="static/results/comp/4021_cut_broccoli.mp4" type="video/mp4"></video>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/comp/9671_split_cups.mp4" type="video/mp4"></video>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/comp/3161_peel_banana.mp4" type="video/mp4"></video>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/comp/3316_peel_onion.mp4" type="video/mp4"></video>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/comp/556_cut_tomato_1.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- Qualitative Comparisons -->
+
+
+<!-- Failure Cases -->
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Failure Cases</h2>
+      </div>
+    </div>
+    <div class="subtitle has-text-justified">
+      <p>
+        In both cases below, the tracking errors made by the base tracker (SAM2.1) are propagated to the final prediction.
+        <br></br>
+        Additionally shown in Row 2, the existing vision-language model fails to recognize the object (measuring tap) from singular frames only with substantial occlusion.
+      </p>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 0340_fry_omelet_1</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/m3vos/0340_fry_omelet_1.mp4" type="video/mp4"></video>
+        <img src="static/results/m3vos/0340_fry_omelet_1.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column video-ours" style="text-align: center">
+        <p class="has-text-centered title is-6" style="margin:0pt; margin-top:10pt">Video ID: 7359_fold_tape_measure</p>
+        <video controls muted loop playsinline width="100%"> <source src="static/results/vost/7359_fold_tape_measure.mp4" type="video/mp4"></video>
+        <img src="static/results/vost/7359_fold_tape_measure.jpg" style="max-height: 180px; width: auto">
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- Failure Cases -->
 
 <!-- Scripts for Generating Captions -->
 <script>
@@ -286,7 +558,13 @@
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">BibTeX</h2>
-        <pre><code>Coming Soon!</code></pre>
+        <pre><code>@article{sun2025tracking,
+  title={Tracking and Understanding Object Transformations},
+  author={Sun, Yihong and Yang, Xinyu and Sun, Jennifer J and Hariharan, Bharath},
+  journal={Advances in Neural Information Processing Systems},
+  volume={38},
+  year={2025}
+}</code></pre>
       </div>
     </div>
   </div>
